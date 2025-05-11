@@ -38,18 +38,18 @@ function ImageComponent({
   const y = useParallax(scrollYProgress, 100);
 
   return (
-    <section className="img-container">
-      <div ref={ref} className="rounded-xl">
-        <Image
-          src={project.src}
-          alt="project"
-          className="rounded-xl"
-          width={300} 
-          height={400} 
-        />
-      </div>
+    <section className="img-container flex flex-col items-center gap-6 sm:flex-row sm:justify-center sm:items-start">
+  <div ref={ref} className="rounded-xl w-[300px] h-[400px] sm:w-[300px] sm:h-[400px]  max-w-xs sm:max-w-none">
+    <Image
+      src={project.src}
+      alt="project"
+      className="rounded-xl object-cover w-full h-full"
+      width={300}
+      height={400}
+    />
+  </div>
 
-      <motion.a
+  <motion.a
         href={project.link}
         target="_blank"
         initial="offscreen"
@@ -58,10 +58,11 @@ function ImageComponent({
         transition={{ duration: 0.5 }}
         className="block p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl"
       >
-        <h3 className="text-2xl font-semibold mb-2">{project.title}</h3>
-        <p className="prose dark:prose-invert">{project.description}</p>
-      </motion.a>
-    </section>
+    <h3 className="text-2xl font-semibold mb-2">{project.title}</h3>
+    <p className="prose dark:prose-invert">{project.description}</p>
+  </motion.a>
+</section>
+
   );
 }
 
@@ -118,6 +119,11 @@ function StyleSheet() {
         }
 
         @media (max-width: 500px) {
+         .img-container {
+             height: auto !important;
+             padding-top: 1rem;
+             padding-bottom: 1rem;
+             }
             .img-container > div {
                 width: 150px;
                 height: 200px;
@@ -135,7 +141,7 @@ function StyleSheet() {
             right: 0;
             height: 7px;
             background: black;
-            bottom: 50px;
+            bottom: 10px;
             transform: scaleX(0);
         }
     `}</style>
